@@ -1,0 +1,106 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+
+{% block content %}
+<!-- NEW DEPOSITS -->                        
+<div class="row">
+    <div class="col-md-4">
+        <div class="tile-basic tile-basic-icon-top">
+            <div class="tile-icon">
+                <span class="icon-cash-dollar"></span>
+            </div>
+            <div class="tile-content text-center">
+                <h3 class="tile-title">Deposits</h3>
+                <p>Manages all Deposits. User can manage clients deposits by selecting the specific client from this very page or manager.</p>
+                <a href="{% url 'clients:deposits' %}" class="btn btn-primary btn-clean">Make Deposit</a>
+            </div>
+        </div>                                
+    </div>
+    <div class="col-md-4">
+        <div class="tile-basic tile-basic-icon-top">
+            <div class="tile-icon">
+                <span class="icon-receipt"></span>
+            </div>
+            <div class="tile-content text-center">
+                <h3 class="tile-title">Withdrawals</h3>
+                <p>Manages all withdrawal. User can manage clients withdrawals by selecting the specific client from this very page or manager.</p>
+                <a href="{% url 'clients:withdrawals' %}" class="btn btn-primary btn-clean">Make Withdrawal</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="tile-basic tile-basic-icon-top">
+            <div class="tile-icon">
+                <span class="icon-apartment"></span>
+            </div>
+            <div class="tile-content text-center">
+                <h3 class="tile-title">Bank Branch</h3>
+                <p>Manages all bank branches. From creation of a new bank branch to and viewing its performance. This page is for administrators only.</p>
+                <a href="{% url 'branch:branch_list' %}" class="btn btn-primary btn-clean">Contact Manager</a>
+            </div>
+        </div>
+    </div>                            
+</div>                                                
+<!-- END NEW DEPOSITS -->
+
+<!-- DEPOSITS -->
+<div class="block block-condensed">
+    <div class="app-heading app-heading-small">                                        
+        <div class="title">
+            <h2>{{ panel_name}}</h2>
+            <p>{{ panel_title }}</p>
+        </div>
+        <div class="heading-elements">                                    
+            <div class="heading-elements">
+                <a class="btn btn-primary btn-icon-fixed" href="{% url 'branch:create_branch' %}"><span class="icon-city"></span> Add New Branch</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="block-content">
+        <table class="table table-striped table-bordered datatable-extended">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th style="width: 25%;"> Name</th>
+                    <th style="width: 35%;">Opening date</th>
+                    <th>Country</th>
+                    <th style="width: 10%;">Region</th>
+                    <th style="width: 10%;">City</th>
+                    <th>Phone number</th>
+                    <th>Active?</th>
+                    <th style="width: 20%;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for branch in object_list %}
+                <tr>
+                    <td>{{ branch.id }}</td>
+                    <td><strong>{{ branch.name }}</td>
+                    <td><strong>{{ branch.opening_date }}</strong></td>
+                    <td>{{ branch.country }}</td>
+                    <td>{{ branch.region }}</td>
+                    <td>{{ branch.city }}</td>
+                    <td>{{ branch.phone_number }}</td>
+                    {% if branch.is_active %}
+                    	<td><span class="label label-success label-bordered">{{ branch.is_active }}</span></td>
+                    {% else %}
+	                	<td><span class="label label-danger label-bordered">{{ branch.is_active }}</span></td>
+                	{% endif %}
+                    <td>
+                        <a class="btn btn-default btn-icon" href="{% url 'branch:branch_detail' branch.pk %}"><span class="icon-document"></span></a>
+                        {% if user.is_manager %}
+	                        <a class="btn btn-danger btn-icon btn-clean" href="{% url 'branch:delete_branch' branch.pk %}"><span class="icon-trash3"></span></a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}                                                                       
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- END DEPOSITS -->
+
+
+{% endblock %}

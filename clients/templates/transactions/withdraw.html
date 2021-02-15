@@ -1,0 +1,30 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="block block-condensed">
+    <div class="app-heading app-heading-small">                                        
+        <div class="title">
+            <h2>Withdrawals</h2>
+            <p>Handles the creation of withdrawals.</p>
+        </div>
+    </div>
+    <div class="block-content">
+		<form method="post" action="" role='form' class="form" enctype="multipart/form-data" {% if layout != 'vertical' %}class="form-{{ layout }}"{% endif %}>
+			{% csrf_token %}
+			{% bootstrap_form form %}
+			{% bootstrap_form_errors form %}
+			<input type="submit" name="submit" value="Submit" class="btn btn-primary btn-clean btn-block btn-rounded">
+		</form>
+	</div>
+</div>
+{% endblock %}
+{% block script_js %}
+<script type="text/javascript">
+	var selector = document.getElementById("id_client");
+	selector.setAttribute("data-live-search", "true");
+	selector.setAttribute("class", "bs-select")
+</script>
+{% endblock %}

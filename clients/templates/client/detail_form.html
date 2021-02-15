@@ -1,0 +1,126 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 col-xs-12">                                
+        <div class="block block-condensed padding-top-20">
+            <div class="contact contact-container contact-single">
+            	{% if object.account_photo.url%}
+	                <img src="{{ object.account_photo.url }}" alt="{{ object.account_name }}" style="width: 20%; height: 15%;">
+                {% endif %}
+                <div class="contact-container">
+                    <a href="#">Account name: {{ object.account_name }}</a>
+                    <span>Account number: {{ object.account_number }}</span>
+                    <p>Account balance: GH₵{{ object.account_balance|floatformat:2 }}</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+            	<div class="list-group">
+	            	<div style="font-size: 20px;"><span class="fa fa-angle-double-down"></span> General Information</div>                                       
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b> Mandate:</b> {{ object.mandate }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Account purpose:</b> {{ object.account_purpose }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Savings account?:</b> {{ object.is_saving_account }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Current account?:</b> {{ object.is_current_account }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Active account?:</b> {{ object.is_active }}</div>                                                                                                                                                                  
+	            </div>
+            </div>     
+            <div class="col-md-3 col-xs-3">
+            	<div class="list-group">
+	            	<div style="font-size: 20px;"><span class="fa fa-angle-double-down"></span> Personal Information</div>    
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Full Name:</b> {{ object.name }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Marital Status:</b> {{ object.marital_status }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Gender:</b> {{ object.gender }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Place of birth:</b> {{ object.place_of_birth }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Date of birth:</b> {{ object.date_of_birth }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Nationality:</b> {{ object.nationality }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Hometown:</b> {{ object.hometown }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Region / State:</b> {{ object.region_or_state }}</div>  
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Mother's name:</b> {{ object.mother_name }}</div>   
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Father's name:</b> {{ object.father_name }}</div> 
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>Occupation:</b> {{ object.occupation }}</div> 
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>SSNIT number:</b> {{ object.ssnit_number }}</div>   
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span><b>TIN number:</b> {{ object.tin_number }}</div>                                     
+	            </div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+            	<div class="list-group">
+            		<div style="font-size: 20px;"><span class="fa fa-angle-double-down"></span> Contact Information</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Residential address:</b> {{ object.residential_address }}</div> 
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Residential Town:</b> {{ object.residential_city }}</div> 
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Residential Region:</b> {{ object.residential_region }}</div> 
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Residential mobile #:</b> {{ object.residential_phone }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Residential status:</b> {{ object.residential_status }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>National identity:</b> {{ object.national_identity }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>National identity #:</b> {{ object.id_number }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>ID issued date:</b> {{ object.id_issue_date }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>ID expiry date:</b> {{ object.id_expiry_date }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Country ID was issued:</b> {{ object.country_of_issue }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Email address:</b> {{ object.email }}</div>
+            	</div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+            	<div class="list-group">
+            		<div style="font-size: 20px;"><span class="fa fa-angle-double-down"></span> Employment Information</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Employment type:</b> {{ object.employment_type }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>City/Town:</b> {{ object.city_of_employment }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Region:</b> {{ object.region_of_employment }}</div>
+            		<div class="list-group-item"><<span class="fa fa-angle-right"></span><b>Nature of business:</b> {{ object.nature_of_business }}</div>
+            	</div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+            	<div class="list-group">
+            		<div style="font-size: 20px;"><span class="fa fa-angle-double-down"></span> Kin Information</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Kin name:</b> {{ object.nxt_of_kin_name }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Kin contact:</b> {{ object.nxt_of_kin_contact }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Relation:</b> {{ object.relation_with_kin }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Residence:</b> {{ object.nxt_of_kin_residence }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Region:</b> {{ object.nxt_of_kin_region }}</div>
+            	</div>
+            </div>
+            <div class="col-md-3 col-xs-3">
+            	<div class="list-group">
+            		<div style="font-size: 20px;"><span class="fa fa-angle-double-down"></span> Emergency Contact</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Contact name:</b> {{ object.emergency_contact_name }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Contact phone:</b> {{ object.emergency_contact_phone}}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Relation:</b> {{ object.relation_with_emergency_contact }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Residence:</b> {{ object.emergency_contact_residence }}</div>
+            		<div class="list-group-item"><span class="fa fa-angle-right"></span><b>Region:</b> {{ object.emergency_contact_region }}</div>
+            	</div>
+            </div>
+            <div class="block-content padding-top-20">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="btn btn-info btn-clean btn-block" href="{% url 'clients:edit_client' object.pk %}">Update Client</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-clean btn-block" data-toggle="modal" data-target="#modal-small">Make Client Inactive</a>
+                    </div>
+                </div>                                        
+            </div>
+        </div>                                
+    </div>
+</div>
+
+<!-- MODAL SMALL -->
+<div class="modal fade" id="modal-small" tabindex="-1" role="dialog" aria-labelledby="modal-small-header">                        
+    <div class="modal-dialog modal-sm modal-danger" role="document">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon-cross"></span></button>
+
+        <div class="modal-content">
+            <div class="modal-header">                        
+                <h4 class="modal-title" id="modal-small-header">Delete Client</h4>
+            </div>
+            <div class="modal-body">
+                <h2 align="center">Confirm client as inactive?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                <a type="button" class="btn btn-danger" href="{% url 'clients:delete_client' object.pk %}">Submit</a>
+            </div>
+        </div>
+    </div>            
+</div>
+<!-- END MODAL SMALL -->
+{% endblock %}

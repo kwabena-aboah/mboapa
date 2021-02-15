@@ -1,0 +1,605 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- START PAGE CONTAINER -->
+<div class="container">
+                            
+    <div class="row">
+        <div class="col-md-3">
+            
+            <ul class="app-feature-gallery app-feature-gallery-noshadow margin-bottom-0">
+                <li>
+                    <!-- START WIDGET -->
+                    <div class="app-widget-tile">
+                        <div class="line">
+                            <div class="title">Total Bank Branch</div>
+                            <div class="title pull-right"><span class="label label-success label-bordered">{{ branch_percent }}%</span></div>
+                        </div>                                        
+                        <div class="intval">{{ branch_count }}</div>                                        
+                        <div class="line">
+                            <div class="subtitle">Total number of banks</div>
+                            <div class="subtitle pull-right text-success"><span class="icon-arrow-up"></span> good</div>
+                        </div>
+                    </div>                                                                        
+                    <!-- END WIDGET -->
+                </li>
+                <li>
+                    <!-- START WIDGET -->
+                    <div class="app-widget-tile">
+                        <div class="line">
+                            <div class="title">Percentage Of Banks Created </div>
+                            <div class="title pull-right text-success">{{ branch_count }}</div>
+                        </div>                                        
+                        <div class="intval">{{ branch_percent }}%</div>
+                        <div class="line">
+                            <div class="subtitle">Total percentage</div>
+                            <div class="subtitle pull-right text-success"><span class="icon-check"></span> good</div>
+                        </div>
+                    </div>                                                                        
+                    <!-- END WIDGET -->
+                </li>
+            </ul>
+            
+        </div>
+        <div class="col-md-3">
+            
+            <ul class="app-feature-gallery app-feature-gallery-noshadow margin-bottom-0">
+                <li>
+                    <!-- START WIDGET -->
+                    <div class="app-widget-tile app-widget-highlight">
+                        <div class="line">
+                            <div class="title">Users</div>
+                            <div class="title pull-right"><span class="label label-warning label-bordered">{{ user_percent }}%</span></div>
+                        </div>                                        
+                        <div class="intval">{{ user_count }}</div>
+                        <div class="line">
+                            <div class="subtitle">Total Users</div>
+                            <div class="subtitle pull-right text-warning"><span class="icon-arrow-down"></span> normal</div>
+                        </div>
+                    </div>
+                    <!-- END WIDGET -->
+                </li>
+                <li>
+                    <!-- START WIDGET -->
+                    <div class="app-widget-tile app-widget-highlight">
+                        <div class="line">
+                            <div class="title">User Percentage</div>
+                            <div class="title pull-right text-success">{{ user_count }}</div>
+                        </div>                                        
+                        <div class="intval">{{ user_percent }}%</div>
+                        <div class="line">
+                            <div class="subtitle">Total registered users in %</div>
+                            <div class="subtitle pull-right text-success"><span class="icon-arrow-up"></span></div>
+                        </div>
+                    </div>
+                    <!-- END WIDGET -->
+                </li>
+            </ul>
+                                            
+        </div>
+        <div class="col-md-3">
+            
+            <ul class="app-feature-gallery app-feature-gallery-noshadow margin-bottom-0">
+                <li>                                        
+                    <!-- START WIDGET -->
+                    <div class="app-widget-tile app-widget-highlight">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon icon-lg">
+                                    <span class="icon-group-work"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">                                                    
+                                <div class="line">
+                                    <div class="title">All Clients</div>         
+                                    <div class="title pull-right"><span class="label label-success label-bordered">{{ client_percent }}%</span></div>
+                                </div>                                        
+                                <div class="intval text-left">{{ client_count }}</div>                                        
+                                <div class="line">
+                                    <div class="subtitle"><a href="{% url 'clients:client_list' %}">view all clients</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END WIDGET -->                                        
+                </li>
+                <li>                                        
+                    <!-- START WIDGET -->
+                    <div class="app-widget-tile app-widget-highlight">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon icon-lg">
+                                    <span class="icon-graph"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">                                                    
+                                <div class="line">
+                                    <div class="title">Client Percentage</div>                                                        
+                                </div>                                        
+                                <div class="intval text-left">{{ client_percent }}%</div>                                        
+                                <div class="line">
+                                    <div class="subtitle"><a href="{% url 'clients:client_list' %}">view all clients</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END WIDGET -->                                        
+                </li>
+                <li>                                        
+                    <!-- START WIDGET -->
+                    <div class="app-widget-tile app-widget-highlight">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon icon-lg">
+                                    <span class="icon-wallet"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">                                                    
+                                <div class="line">
+                                    <div class="title">Total Savings Balance</div>                                                        
+                                </div>                                        
+                                <div class="intval text-left">GH₵ {{ total_client_balance|floatformat:2 }}</div>                                        
+                                <div class="line">
+                                    <div class="subtitle"><a href="{% url 'clients:client_list' %}">view all clients</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END WIDGET -->                                        
+                </li>
+            </ul>
+            
+        </div>
+        <div class="col-md-3">
+            
+            <ul class="app-feature-gallery app-feature-gallery-noshadow margin-bottom-0">
+                <li>                                        
+                    <!-- START WIDGET -->
+                    <div class="app-widget-tile app-widget-highlight">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon icon-lg">
+                                    <span class="icon-cash-dollar"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">                                                    
+                                <div class="line">
+                                    <div class="title">Total Deposits</div>
+                                    <div class="subtitle pull-right text-success"><span class="fa fa-check"></span>GH₵ {{ total_deposits|floatformat:2 }}</div>
+                                </div>                                        
+                                <div class="intval text-left">GH₵ {{ total_deposits|floatformat:2 }}</div>                                        
+                                <div class="line">
+                                    <div class="subtitle">Deposits as on : <a href="#">{% now 'd-M-Y' %}</a></div>
+                                </div>
+                            </div>
+                        </div>                                            
+                    </div>
+                    <!-- END WIDGET -->                                        
+                </li>
+                <li>                                        
+                    <!-- START WIDGET -->
+                    <div class="app-widget-tile app-widget-highlight">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icon icon-lg">
+                                    <span class="icon-receipt"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">                                                    
+                                <div class="line">
+                                    <div class="title">Total Withdrawal</div>
+                                    <div class="subtitle pull-right text-success"><span class="fa fa-check"></span>GH₵ {{ total_withdrawals|floatformat:2 }}</div>
+                                </div>                                        
+                                <div class="intval text-left">GH₵ {{ total_withdrawals|floatformat:2 }}</div>
+                                <!-- <div class="line">
+                                    <div class="subtitle">4/10 databases used</div>
+                                </div> -->
+                            </div>
+                        </div>                                            
+                    </div>
+                    <!-- END WIDGET -->                                        
+                </li>
+
+            </ul>
+            
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="app-heading app-heading-small">                                
+            <div class="title">
+                <h5>Graphical Reports</h5>
+                <p>Provide <code>analytical information</code> to top managers for decision making.</p>
+            </div>
+        </div>
+        
+        <div class="row margin-top-30">
+            <div class="col-md-3">
+                
+                <div class="app-widget-informer">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input class="knob" data-fgColor="#f69f00" data-thickness=".1" data-displayInput="false" readonly value="{{ new_clients_per_month }}" data-min="0" data-max="{{ client_count }}" data-width="100%">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="title">New Clients This Month</div>
+                            <div class="intval">{{ new_clients_per_month }}</div>                                                                             
+                        </div>
+                    </div>                                        
+                </div>
+                
+            </div>
+            <div class="col-md-3">
+                
+                <div class="app-widget-informer">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input class="knob" data-fgColor="#f04e51" data-thickness=".1" data-displayInput="false" readonly value="{{ male_client_balance }}" data-min="0" data-max="{{ total_client_balance }}" data-width="100%">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="title">Total Male Client Balance</div>
+                            <div class="intval">GH₵ {{ male_client_balance }}</div>                                                                             
+                        </div>
+                    </div>                                        
+                </div>
+                
+            </div>
+            <div class="col-md-3">
+                
+                <div class="app-widget-informer">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input class="knob" data-fgColor="#f69f00" data-thickness=".1" data-displayInput="false" readonly value="{{ female_client_balance }}" data-min="0" data-max="{{ total_client_balance }}" data-width="100%">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="title">Total Female Client Balance</div>
+                            <div class="intval">GH₵ {{ female_client_balance }}</div>                                                                             
+                        </div>
+                    </div>                                        
+                </div>
+                
+            </div>
+            <div class="col-md-3">
+                
+                <div class="app-widget-informer">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input class="knob" data-fgColor="#4fb5dd" data-thickness=".1" data-displayInput="false" readonly value="{{ female_client_count }}" data-min="0" data-max="{{ client_count }}" data-width="100%">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="title">Number of Females This Month</div>
+                            <div class="intval">{{ female_client_count }}</div>                                                                             
+                        </div>
+                    </div>                                        
+                </div>
+                
+            </div>
+                <div class="col-md-3">
+                    <div class="app-widget-informer">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input class="knob" data-fgColor="#84bf43" data-thickness=".1" data-displayInput="false" readonly value="{{ male_client_count }}" data-min="0" data-max="{{ client_count }}" data-width="100%">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="title">Number of Males This Month</div>
+                                <div class="intval">{{ male_client_count }}</div>                                                                             
+                            </div>
+                        </div>                                        
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="app-widget-informer">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input class="knob" data-fgColor="#4fb5dd" data-thickness=".1" data-displayInput="false" readonly value="{{ dormant_client_balance }}" data-min="0" data-max="{{ total_client_balance }}" data-width="100%">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="title">Dormant Account Balance</div>
+                                <div class="intval">GH₵ {{ dormant_client_balance }}</div>                                                                             
+                            </div>
+                        </div>                                        
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="app-widget-informer">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input class="knob" data-fgColor="#f04e51" data-thickness=".1" data-displayInput="false" readonly value="{{ dormant_clients_total }}" data-min="0" data-max="{{ client_count }}" data-width="100%">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="title">Dormat Accounts</div>
+                                <div class="intval">{{ dormant_clients_total }}</div>                                                                             
+                            </div>
+                        </div>                                        
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="app-widget-informer">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input class="knob" data-fgColor="#84bf43" data-thickness=".1" data-displayInput="false" readonly value="{{ min_savings }}" data-min="0" data-max="{{ total_client_balance }}" data-width="100%">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="title">Min Savings</div>
+                                <div class="intval">GH₵ {{ min_savings|floatformat:2 }}</div>                                                                             
+                            </div>
+                        </div>                                        
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="app-widget-informer">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input class="knob" data-fgColor="#4fb5dd" data-thickness=".1" data-displayInput="false" readonly value="{{ max_savings }}" data-min="0" data-max="{{ total_client_balance }}" data-width="100%">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="title">Max Savingss</div>
+                                <div class="intval">GH₵ {{ max_savings|floatformat:2 }}</div>                                                                             
+                            </div>
+                        </div>                                        
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="app-widget-informer">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input class="knob" data-fgColor="#f69f00" data-thickness=".1" data-displayInput="false" readonly value="{{ avg_savings }}" data-min="0" data-max="{{ total_client_balance }}" data-width="100%">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="title">Avg Savingss</div>
+                                <div class="intval">GH₵ {{ avg_savings|floatformat:2 }}</div>                                                                             
+                            </div>
+                        </div>                                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    <div class="row">
+        <div class="col-md-6">
+            
+            <!-- START LATEST TRANSACTIONS -->
+            <div class="block block-condensed">
+                <div class="app-heading">                                        
+                    <div class="title">
+                        <h2>All Clients</h2>
+                        <p>Quick information</p>
+                    </div>              
+                    <div class="heading-elements">
+                        <a class="btn btn-default btn-icon-fixed" href="{% url 'clients:client_list' %}"><span class="icon-users-plus"></span> All Clients</a>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="table-responsive">
+                        <table class="table table-clean-paddings margin-bottom-0">
+                            <thead>
+                                <tr>
+                                    <th>Account Name</th>
+                                    <th>Account Balance</th>                                               
+                                    <th>Active?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	{% for client in clients %}
+                                <tr>
+                                    <td>
+                                        <div class="contact contact-rounded contact-bordered contact-lg">
+                                            {% if client.account_photo %}
+                                                <img src="{{ client.account_photo.url }}">
+                                            {% else %}
+                                                <img src="{% static 'img/user/no-image.png' %}" alt="{{ client.account_name }}">
+                                            {% endif %}
+                                            <div class="contact-container">
+                                                <a href="#">{{ client.account_name }}</a>
+                                                <span>{{ client.account_number }}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>‎GH₵ {{ client.account_balance|floatformat:2 }}</td>
+                                    {% if client.is_active is True %}
+	                                    <td><span class="label label-success label-bordered">{{ client.is_active }}</span></td>
+	                                {% else %}
+	                                	<td><span class="label label-danger label-bordered">{{ client.is_active }}</span></td>
+	                                {% endif %}
+                                </tr>
+                                {% endfor %}                                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END CLIENTS -->
+            
+        </div>
+        <div class="col-md-6">
+            
+            <!-- START LATEST TRANSACTIONS -->
+            <div class="block block-condensed">
+                <div class="app-heading">                                        
+                    <div class="title">
+                        <h2>All Branches</h2>
+                        <p>Quick information</p>
+                    </div>              
+                    <div class="heading-elements">
+                        <a class="btn btn-default btn-icon-fixed" href="{% url 'branch:branch_list' %}"><span class="icon-apartment"></span> All Branches</a>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="table-responsive">
+                        <table class="table table-clean-paddings margin-bottom-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>City</th>                                               
+                                    <th>Active?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	{% for location in branch %}
+                                <tr>
+                                    <td>
+                                        <div class="contact contact-rounded contact-bordered contact-lg">
+                                            <img src="{% static 'img/bankLOGO.jpg' %}">
+                                            <div class="contact-container">
+                                                <a href="#">{{ location.name }}</a>
+                                                <span>on {{ location.opening_date }}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ location.city }}</td>
+                                    {% if location.is_active is True %}
+	                                    <td><span class="label label-success label-bordered">{{ location.is_active }}</span></td>
+	                                {% else %}
+	                                	<td><span class="label label-danger label-bordered">{{ location.is_active }}</span></td>
+	                                {% endif %}
+                                </tr>
+                                {% endfor %}                                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END LATEST TRANSACTIONS -->
+            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            
+            <div class="block block-condensed">
+                <div class="app-heading">                                        
+                    <div class="title">
+                        <h2>All Deposits </h2>
+                        <p>Quick information</p>
+                    </div>              
+                    <div class="heading-elements">
+                        <a class="btn btn-default btn-icon-fixed" href="{% url 'clients:deposits' %}"><span class="icon-cash-dollar"></span> Deposits</a>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="table-responsive">
+                        <table class="table table-clean-paddings margin-bottom-0">
+                            <thead>
+                                <tr>
+                                    <th>Client</th>                                              
+                                    <th>Amount</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	{% for transaction in deposits %}
+                                <tr>
+                                    <td>
+                                        <div class="contact contact-rounded contact-bordered contact-lg">
+                                            {% if transaction.client.account_photo %}
+                                                <img src="{{ transaction.client.account_photo.url }}">
+                                            {% else %}
+                                                <img src="{% static 'img/user/no-image.png' %}" alt="{{ transaction.client.account_name }}">
+                                            {% endif %}
+                                            <div class="contact-container">
+                                                <a href="#">{{ transaction.client }}</a>
+                                                
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span>GH₵ {{ transaction.amount|floatformat:2 }}</span></td>
+                                    <td>{{ transaction.transaction_time }}</td>
+                                </tr>
+                                {% endfor %}                                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="col-md-4">
+            
+            <div class="block block-condensed">
+                <div class="app-heading">                                        
+                    <div class="title">
+                        <h2>All Withdrawals </h2>
+                        <p>Quick information</p>
+                    </div>              
+                    <div class="heading-elements">
+                        <a class="btn btn-default btn-icon-fixed" href="{% url 'clients:withdrawals' %}"><span class="icon-receipt"></span> Withdrawals</a>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="table-responsive">
+                        <table class="table table-clean-paddings margin-bottom-0">
+                            <thead>
+                                <tr>
+                                    <th>Client</th>                                              
+                                    <th>Amount</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	{% for withdrawal in withdrawals %}
+                                <tr>
+                                    <td>
+                                        <div class="contact contact-rounded contact-bordered contact-lg">
+                                            {% if withdrawal.client.account_photo %}
+                                                <img src="{{ withdrawal.client.account_photo.url }}">
+                                            {% else %}
+                                                <img src="{% static 'img/user/no-image.png' %}" alt="{{ withdrawal.client.account_name }}">
+                                            {% endif %}
+                                            <div class="contact-container">
+                                                <a href="#">{{ withdrawal.client }}</a>
+                                                
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span>GH₵ {{ withdrawal.amount|floatformat:2 }}</span></td>
+                                    <td>{{ withdrawal.transaction_time }}</td>
+                                </tr>
+                                {% endfor %}                                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="col-md-4">
+            
+            <!-- START TOP STORES -->
+            <div class="block block-condensed">
+                <div class="app-heading">                                        
+                    <div class="title">
+                        <h2>Top 10 Clients</h2>
+                        <p>Best saving clients</p>
+                    </div>              
+                    <!-- <div class="heading-elements">
+                        <button class="btn btn-default btn-icon-fixed"><span class="icon-city"></span>All Stores</button>
+                    </div> -->
+                </div>
+                <div class="block-content">
+                    {% for client in clients %}
+                    <div class="form-group">
+                        {% if client.account_balance >= 1000 %}                                            
+                        <label>{{ client.account_name }}</label><span class="pull-right text-bold">GH₵ {{ client.account_balance|floatformat:2 }}</span>
+                        <div class="progress progress-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="GH₵ {{ client.account_balance|floatformat:2 }}">
+                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ client_count }}" aria-valuemin="0" aria-valuemax="{{ client_count }}" style="width: 75%"></div>
+                        </div>
+                        {% endif %}                                            
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- END TOP STORES -->
+            
+        </div>                            
+    </div>
+    
+</div>
+<!-- END PAGE CONTAINER -->
+{% endblock %}

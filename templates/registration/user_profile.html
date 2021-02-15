@@ -1,0 +1,42 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block content %}
+<div class="app-heading app-heading-condensed heading-transparent app-heading-small margin-bottom-10">
+    <div class="title">
+        <h2>User Profiles</h2>
+        <p>View and manage user account password.</p>
+    </div>                                
+</div>
+
+<div class="row">             
+    <div class="col-md-12">
+        
+        <div class="tile-basic tile-basic-icon-top tile-basic-shadow">
+            <div class="tile-icon">
+                {% if user.profile_pic %}
+                    <img src="{{ user.profile_pic.url }}" alt="{{ user.username }}" width="150px" height="150px">
+                {% else %}
+                    <img src="{% static 'img/user/no-image.png' %}" alt="{{ user.username }}">
+                {% endif %}
+            </div>
+            <div class="tile-content text-center">
+                <span class="tile-subtitle">{{ user.username }}</span>
+                <span class="tile-subtitle">{{ user.email }}</span>
+                <h3 class="tile-title tile-title-underlined">{{ user.first_name }} {{ user.last_name }}</h3>
+                <p>Last Login: {{ user.last_login }}</p>
+                <p>Date Joined: {{ user.date_joined }}</p>
+                {% if user.is_manager or user.is_superuser %}
+                	<p>Bank Manger?: {{ user.is_manager }}</p>
+                {% endif %}
+                {% if user.is_teller %}
+                    <p>Bank Teller?: {{ user.is_teller }}</p>
+                {% endif %}
+                <p>&nbsp;</p>
+                <a href="{% url 'dashboard:change_password' %}" class="btn btn-primary btn-clean">Manage Password</a>
+            </div>
+        </div>
+        
+    </div>                            
+</div>
+{% endblock %}

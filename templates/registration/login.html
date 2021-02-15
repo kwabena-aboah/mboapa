@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>                        
+        <title>MBOA PA FINANCIAL SERVICE - Login</title>            
+        
+        <!-- META SECTION -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="shortcut icon" href="{% static 'img/bankLOG.png' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'img/bankLOG.png' %}" type="image/x-icon">
+        <!-- END META SECTION -->
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+        <!-- EOF CSS INCLUDE -->
+    </head>
+    <body>        
+        {% block content %}
+        <!-- APP WRAPPER -->
+        <div class="app app-fh">
+            {% if messages %}
+				<div class="messages">
+					<ul>
+					{% for message in messages %}
+						<li class="{{ message.tag }}alert alert-success alert-dismissable">
+							{{ message }}
+						</li>
+					{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+
+            <!-- START APP CONTAINER -->
+            <div class="app-container" style="background: url({% static 'img/BG_bank.jpg' %}) center center no-repeat fixed; background-size: cover;">
+                
+                <div class="app-login-box">                                        
+                    <div class="app-login-box-user"><img src="{% static 'img/bankLOGO.jpg' %}"></div>
+                    <div class="app-login-box-title">
+                        <div class="title">Already a member?</div>
+                        <div class="subtitle">Sign in to your account</div> 
+                        {% if form.errors %}
+                            <p class="alert alert-danger alert-dismissable">Your username and password didn't match. Please try again.</p>
+                        {% endif %}                       
+                    </div>
+                    <div class="app-login-box-container">
+                        <form action="{% url 'dashboard:login' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ next|escape }}" />
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="username" placeholder="Username" id="id_username" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Password" id="id_password" required>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <div class="app-checkbox">
+                                            <label><input type="checkbox" name="app-checkbox-1" value="0"> Remember me</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <button class="btn btn-primary btn-block btn-clean btn-rounded" type="submit" name="submit">Sign In</button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </form>
+                    </div>
+                    <div class="app-login-box-footer">
+                        &copy; {% now 'Y' %} Mboa Pa Fianancial Services. All right reserved.
+                    </div>
+                </div>
+                                
+            </div>
+            <!-- END APP CONTAINER -->
+           
+        </div> 
+        {% endblock %}       
+        {% include 'scripts_base.html' %}
+    </body>
+</html>

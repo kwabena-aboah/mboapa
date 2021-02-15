@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>                        
+        <title>MBOA PA FIANANCIAL SERVICE</title>            
+        
+        <!-- META SECTION -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="shortcut icon" href="{% static 'img/bankLOG.png' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'img/bankLOG.png' %}" type="image/x-icon">
+        {% load bootstrap3 %}
+
+		{% bootstrap_css %}
+		{% bootstrap_javascript %}
+        <!-- END META SECTION -->
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <!-- EOF CSS INCLUDE -->
+        {% block static_css %}{% endblock %}
+    </head>
+    <body>        
+        
+        <!-- APP WRAPPER -->
+        <div class="app">                       
+            
+            <!-- START APP CONTAINER -->
+            <div class="app-container">                
+                <!-- START APP HEADER -->
+                {% block top_nav %}
+                <div class="app-header">
+                    <div class="container container-boxed">
+                        <ul class="app-header-buttons visible-mobile">
+                            <li><a href="/" class="btn btn-link btn-icon" data-navigation-horizontal-toggle="true"><span class="icon-menu"></span></a></li>                    
+                        </ul>
+                        <a href="/" class="app-header-logo app-header-logo-light app-header-logo-condensed">home</a>
+                
+                        <ul class="app-header-buttons pull-right">
+                            <li>
+                                {% if user.is_authenticated %}
+                                <div class="contact contact-rounded contact-bordered contact-lg contact-ps-controls">
+                                    {% if user.profile_pic %}
+                                        <img src="{{ user.profile_pic.url }}" alt="{{ user.username }}" width="300px" height="40px">
+                                    {% else %}
+                                        <img src="{% static 'img/user/no-image.png' %}" alt="{{ user.username }}">
+                                    {% endif %}
+                                    <div class="contact-container">
+                                        <a href="{% url 'dashboard:user_profile' %}">{{ user.username }}</a>
+                                        <span>{{ user.email }}</span>
+                                    </div>
+                                    <div class="contact-controls">
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-default btn-icon" data-toggle="dropdown"><span class="icon-cog"></span></button>                        
+                                            <ul class="dropdown-menu dropdown-left">
+                                                <li><a href="{% url 'dashboard:change_password' %}"><span class="icon-cog"></span> Manage Password</a></li> 
+                                                <li class="divider"></li>
+                                                <li><a href="{% url 'dashboard:logout' %}"><span class="icon-exit-right"></span> Log Out</a></li> 
+                                            </ul>
+                                        </div>                    
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </li>    
+                        </ul>
+                    </div>
+                </div>
+                {% endblock %}
+                <!-- END APP HEADER  -->
+                
+                <!-- START APP CONTENT -->
+                <div class="app-content">
+                	{% block bottom_nav %}
+                    <div class="app-navigation-horizontal margin-bottom-15">    
+                        <div class="container container-boxed">
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="#"><span class="icon-earth"></span> My Clients</a>
+                                        <ul>
+                                        	<li><a href="{% url 'clients:client_list' %}">Clients</a></li>
+                                            <li><a href="{% url 'clients:transaction_view' %}">Transactions</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="icon-sync"></span> Branch</a>
+                                        <ul>
+                                            <li><a href="{% url 'branch:branch_list' %}">All Branch</a></li>
+                                            <li><a href="{% url 'branch:create_branch' %}">Create Branch</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="#"><span class="icon-cog"></span> Settings</a>
+                                        <ul>
+                                            <li><a href="pages-bank-settings.html">Account</a></li>
+                                            <li><a href="pages-bank-security.html">Security</a></li>                                                
+                                        </ul>
+                                    </li>  -->               
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    {% endblock %}
+                                                                                                  
+                    <!-- START PAGE CONTAINER -->
+                    <div class="container container-boxed">
+                    	{% if messages %}
+							<div class="messages">
+								<ul>
+								{% for message in messages %}
+									<li class="{{ message.tag }}alert alert-success alert-dismissable">
+										{{ message }}
+									</li>
+								{% endfor %}
+								</ul>
+							</div>
+						{% endif %}
+                        
+                        {% block content %}
+
+                        {% endblock %}
+                        
+                    </div>
+                    <!-- END PAGE CONTAINER -->
+                    
+                </div>
+                <!-- END APP CONTENT -->
+                                
+            </div>
+            <!-- END APP CONTAINER -->            
+            
+            <!-- START APP FOOTER -->
+            <div class="app-footer app-footer-default" id="footer">
+                
+                <div class="container container-boxed">
+                    <div class="app-footer-line">
+                        <div class="copyright">&copy; {% now 'Y' %} Mboa Pa Fianancial Services. All right reserved.</div>
+                        <div class="pull-right">
+                            <ul class="list-inline">
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Help</a></li>
+                                <li><a href="#">API</a></li>
+                                <li><a href="#">Contacts</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- END APP FOOTER -->
+        </div>        
+        <!-- END APP WRAPPER -->                
+        
+        {% include 'scripts_base.html' %}
+        {% block script_js %}{% endblock %}
+        <!-- END SCRIPTS -->
+    </body>
+</html>

@@ -1,0 +1,61 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 col-xs-12">                                
+        <div class="block block-condensed padding-top-20">
+            <div class="contact contact-container contact-single">
+	                <img src="{% static 'img/bankLOGO.jpg' %}" alt="{{ object.account_name }}" style="width: 20%; height: 15%;">
+                <div class="contact-container">
+                    <a href="#">Branch name: {{ object.name }}</a>
+                    <span>Date Opened: {{ object.opening_date }}</span>
+                    <p>Branch country: {{ object.country }}</p>
+                </div>
+                
+            </div>
+            <div class="col-md-12 col-xs-12">
+            	<div class="list-group">
+	            	<div style="font-size: 20px;"><span class="fa fa-angle-double-down"></span> Other Information</div>                                       
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span> Region: {{ object.region}}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span>City: {{ object.city }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span>Phone number: {{ object.phone_number }}</div>
+	                <div class="list-group-item"><span class="fa fa-angle-right"></span>Active branch?: {{ object.is_active }}</div>      
+	            </div>
+            <div class="block-content padding-top-20">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a class="btn btn-info btn-clean btn-block" href="{% url 'branch:edit_branch' object.pk %}">Update branch</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="btn btn-danger btn-clean btn-block" data-toggle="modal" data-target="#modal-small">Make branch inactive</a>
+                        </div>
+                    </div>                                        
+                </div>
+            </div>     
+        </div>                                
+    </div>
+</div>
+
+<!-- MODAL SMALL -->
+<div class="modal fade" id="modal-small" tabindex="-1" role="dialog" aria-labelledby="modal-small-header">                        
+    <div class="modal-dialog modal-sm modal-danger" role="document">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon-cross"></span></button>
+
+        <div class="modal-content">
+            <div class="modal-header">                        
+                <h4 class="modal-title" id="modal-small-header">Delete Branch</h4>
+            </div>
+            <div class="modal-body">
+                <h2 align="center">Confirm branch as inactive?</h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                <a type="button" class="btn btn-danger" href="{% url 'branch:delete_branch' object.pk %}">Submit</a>
+            </div>
+        </div>
+    </div>            
+</div>
+<!-- END MODAL SMALL -->
+{% endblock %}

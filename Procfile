@@ -1,0 +1,1 @@
+web: gunicorn mboapa.wsgi --log-file -

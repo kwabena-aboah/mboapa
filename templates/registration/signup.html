@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+<div class="app-heading app-heading-condensed heading-transparent app-heading-small margin-bottom-10">
+    <div class="title">
+        <h2>Add User</h2>
+        <p>Manages and creates new users.</p>
+    </div>                                
+</div>
+
+<div class="row">             
+    <div class="col-md-12">
+    	<div class="tile-basic tile-basic-icon-top tile-basic-shadow">
+    		<div class="tile-icon">
+                <img src="{% static 'img/user/no-image.png' %}" alt="{{ user.username }}">
+            </div>
+	        <div class="tile-content text-center">
+	        	<p><b>Add New User</b></p>
+	            <form action="" method="post" class="form">
+					{% csrf_token %}
+					{% if form.email.errors %}
+						{{ form.email.errors }}
+					{% endif %}
+						{% bootstrap_form_errors form %}
+					    {% bootstrap_form form layout='inline' %}
+					<input type="submit" name="submit" class="btn btn-primary btn-clean btn-rounded btn-lg" value="Add User">
+				</form>
+	        </div>
+	    </div>
+        
+    </div>                            
+</div>
+{% endblock %}

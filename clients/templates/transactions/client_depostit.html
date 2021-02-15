@@ -1,0 +1,79 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+
+{% block static_css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/print.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- START PAGE CONTAINER -->
+<div class="container container-boxed" id=printarea>
+    
+    <div class="row">                            
+        <div class="col-md-12 tble">
+            
+            <!-- RECENT ACTIVITY -->
+            <div class="block block-condensed">
+                <div class="app-heading app-heading-small">
+                    <div class="title">
+                        <h2>Mboa Pa Financial Service</h2>
+                    </div>
+                    <div class="heading-elements">
+                        <button class="btn btn-success btn-clean btn-icon" onclick="PrintPreview()"><span class="icon-printer"></span></button>
+                    </div>
+                </div>
+				<div class="block-content">
+                    <div class="listing margin-bottom-0">                                                                                
+                        <div class="listing-item listing-item-with-icon">
+                            <img src="{% static 'img/bankLOGO.jpg' %}" width="60px" height="60px">                                                
+                            <h4 class="text-rg text-bold">Transaction Receipt - Cash Deposit Slip <span class="text-muted pull-right">{{ deposits.transaction_time }}</span></h4>                                                
+                            <div class="list-group list-group-inline">
+                            	<div class="list-group-item col-md-4 col-sm-4">
+                                    <span class="text-muted">Teller Name</span><br>
+                                    <span class="text-bold">{{ deposits.client.user }}</span>
+                                </div>
+                                <div class="list-group-item col-md-4 col-sm-4">
+                                    <span class="text-muted">Document Number</span><br>
+                                    <span class="text-bold">{{ deposits.id }}</span>
+                                </div>
+                                <div class="list-group-item col-md-4 col-sm-4">
+                                    <span class="text-muted">Account Name</span><br>
+                                    <span class="text-bold">{{ deposits.client.account_name }}</span>
+                                </div>
+                                <div class="list-group-item col-md-4 col-sm-4">
+                                    <span class="text-muted">Account Number</span><br>
+                                    <span class="text-bold">{{ deposits.client.account_number }}</span>
+                                </div><hr>
+                                <div class="list-group-item col-md-4 col-sm-4">
+                                    <span class="text-muted">Amount</span><br>
+                                    <span class="text-bold text-danger">GH₵ {{ deposits.amount }}</span>
+                                </div>
+                                <div class="list-group-item col-md-4 col-sm-4">
+                                    <span class="text-muted">Balance</span><br>
+                                    <span class="text-bold">GH₵ {{ deposits.client.account_balance }}</span>
+                                </div>                                                    
+                            </div>                                                
+                        </div>
+                    </div>
+                    <div class="block-divider-text">{{ deposits.transaction_time }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}
+
+{% block script_js %}
+<script type="text/javascript">
+	function PrintPreview(){
+		var toPrint = document.getElementById('printarea');
+		var popupWin = window.print();
+		popupWin.document.open();
+		popupWin.document.write('<html><title>::Print Preview::</title><link rel="stylesheet" type="text/css" href="print.css" media="screen"/></head><body">');
+		popupWin.document.write(toPrint.innerHTML);
+		popupWin.document.write('</html>');
+		popupWin.document.close();
+	}
+</script>
+{% endblock %}

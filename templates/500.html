@@ -1,0 +1,54 @@
+{% load static %}
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>                        
+        <title>{% block title %}{% trans 'Internal Server Error' %}{% endblock %}</title>            
+        
+        <!-- META SECTION -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="shortcut icon" href="{% static 'img/bankLOG.png' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'img/bankLOG.png' %}" type="image/x-icon">
+        <!-- END META SECTION -->
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+        <!-- EOF CSS INCLUDE -->
+    </head>
+    <body>        
+        {% block content %}
+        <!-- APP WRAPPER -->
+        <div class="app app-fh">           
+
+            <!-- START APP CONTAINER -->
+            <div class="app-container" style="background: url({% static 'img/BG_bank.jpg' %}) center center no-repeat fixed; background-size: cover;">
+
+            	<div class="app-lock">
+
+                    <div class="app-lock-user">
+                        <img src="{% static 'img/bankLOGO.jpg' %}">
+                    </div>
+                    <div class="app-lock-form">
+                        <h1>{% trans 'Server Error <em>(500)</em>' %}</h1>
+						<p>{% trans "There's been an error. Please report to the site administrators via email and should be fixed shortly. Thanks for your patience." %} <a href="/">Back To Home Page</p>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="app-login-box-footer" align="center">
+                        <b>Click on the round logo above!</b>
+                    </div>
+                </div>
+                                
+            </div>
+            <!-- END APP CONTAINER -->
+           
+        </div>        
+        <!-- END APP WRAPPER --> 
+        {% endblock %}               
+        
+        <!-- START SCRIPTS -->
+        {% include 'scripts_base.html' %}
+    </body>
+</html>

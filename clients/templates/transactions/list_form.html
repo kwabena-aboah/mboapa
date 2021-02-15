@@ -1,0 +1,91 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="block block-condensed">
+    <div class="app-heading app-heading-small">                                        
+        <div class="title">
+            <blockquote><h1>Total Deposits | Total Withdrawal</h1>
+            <h2>GH₵ {{ total_deposits|floatformat:2 }} | GH₵ {{ total_withdrawals|floatformat:2 }}</h2></blockquote>
+        </div>
+    </div>
+</div>
+<!-- DEPOSITS -->
+<div class="block block-condensed">
+    <div class="app-heading app-heading-small">                                        
+        <div class="title">
+            <h2>Deposits</h2>
+            <p>All deposits</p>
+        </div>
+    </div>
+    
+    <div class="block-content">
+        <table class="table table-striped table-bordered datatable-extended">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Client</th>
+                    <th>Amount</th>
+                    <th>Time</th>
+                    <th>Reciepts</th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for deposit in deposits %}
+                <tr>
+                    <td>{{ deposit.id }}</td>
+                    <td><strong>{{ deposit.client.account_name }}</td>
+                    <td><strong>GH₵ {{ deposit.amount|floatformat:2}}</strong></td>
+                    <td>{{ deposit.transaction_time }}</td>
+                    <td>
+                        <a href="{% url 'clients:print_client_deposit' deposit.pk %}" class="btn btn-primary btn-clean">Reciept</a>
+                    </td>
+                </tr>
+                {% endfor %}                                                                     
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- END DEPOSITS -->
+
+<!-- WITHDRAWAL -->
+<div class="block block-condensed">
+    <div class="app-heading app-heading-small">                                        
+        <div class="title">
+            <h2>Withdrawal</h2>
+            <p>All withdrawals</p>
+        </div>
+    </div>
+    
+    <div class="block-content">
+        <table class="table table-striped table-bordered datatable-extended">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Client</th>
+                    <th>Amount</th>
+                    <th>Time</th>
+                    <th>Reciepts</th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for withdraw in withdrawals %}
+                <tr>
+                    <td>{{ withdraw.id }}</td>
+                    <td><strong>{{ withdraw.client.account_name }}</td>
+                    <td><strong>GH₵ {{ withdraw.amount|floatformat:2}}</strong></td>
+                    <td>{{ withdraw.transaction_time }}</td>
+                    <td>
+                        <a href="{% url 'clients:print_client_withdrawal' withdraw.pk %}" class="btn btn-primary btn-clean">Reciept</a>
+                    </td>
+                </tr>
+                {% endfor %}                                                                     
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- END WITHDRAWAL -->
+
+
+{% endblock %}

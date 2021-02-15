@@ -1,0 +1,29 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+	<div class="block block-condensed">
+	    <div class="app-heading app-heading-small">                                        
+	        <div class="title">
+	            <h2>New Branch</h2>
+	            <p>Handles the creation of new bank branch.</p>
+	        </div>
+	    </div>
+	    <div class="block-content">
+		    <form action="" method='POST' role='form' class="form" enctype="multipart/form-data" {% if layout != 'vertical' %}class="form-{{ layout }}"{% endif %}>
+				{% csrf_token %}
+				{% bootstrap_form form %}
+				{% bootstrap_form_errors form %}
+		        <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-clean btn-lg btn-rounded">
+			</form>
+	    </div>
+	</div>
+	{% include 'scripts_base.html' %}
+
+{% endblock %}

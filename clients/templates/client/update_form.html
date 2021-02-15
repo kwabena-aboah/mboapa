@@ -1,0 +1,32 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+	<div class="block block-condensed">
+	    <div class="app-heading app-heading-small">                                        
+	        <div class="title">
+	            <h2>Update Client Record</h2>
+	            <p>Handles the modification of existing clients.</p>
+	        </div>
+	    </div>
+	    <div class="block-content">
+		    <form action="{% url 'clients:edit_client' object.pk %}" method='POST' role='form' class="form" enctype="multipart/form-data" {% if layout != 'vertical' %}class="form-{{ layout }}"{% endif %}>
+				{% csrf_token %}
+				{% bootstrap_form form %}
+				{% bootstrap_form_errors form %}
+		        <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-clean btn-lg btn-rounded">
+			</form>
+	    </div>
+	</div>
+{% endblock %}
+
+{% block script_js %}
+<script type="text/javascript">
+	var selector = document.getElementById("id_account_photo");
+	selector.setAttribute("class", "file-input btn btn-primary");
+</script>
+{% endblock %}

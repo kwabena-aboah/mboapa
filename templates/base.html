@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>MBOA PA FIANANCIAL SERVICE</title>
+        
+        <!-- META SECTION -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="shortcut icon" href="{% static 'img/bankLOG.png' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'img/bankLOG.png' %}" type="image/x-icon">
+        <!-- END META SECTION -->
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <!-- EOF CSS INCLUDE -->
+        {% block static_css %}{% endblock %}
+    </head>
+    <body>        
+        
+        <!-- APP WRAPPER -->
+        <div class="app">           
+
+            <!-- START APP CONTAINER -->
+            <div class="app-container">
+                <!-- START SIDEBAR -->
+                {% block sidebar %}
+                <div class="app-sidebar app-navigation app-navigation-style-default app-navigation-open-hover dir-left" data-type="close-other">
+                    <a href="/" class="app-navigation-logo">
+                        Mboa Pa - Financial Service 
+                    </a>
+                    <nav>
+                        <ul>
+                            <li class="title">MAIN</li>
+                            <li><a href="/"><span class="icon-home5"></span> Dashboard</a></li>
+                            <li><a href="{% url 'clients:transaction_view' %}"><span class="icon-bag-dollar"></span> Transactions</a></li>
+                            <li><a href="{% url 'branch:branch_list' %}"><span class="icon-apartment"></span> Branch</a></li>
+                            <li><a href="{% url 'clients:client_list' %}"><span class="icon-users-plus"></span>Clients</a></li>
+                            {% if user.is_manager %}               
+                            <li><a href="{% url 'dashboard:signup' %}"><span class="icon-user-plus"></span> Add New User</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                {% endblock sidebar %}
+                <!-- END SIDEBAR -->
+                
+                <!-- START APP CONTENT -->
+                <div class="app-content app-sidebar-left">
+                    <!-- START APP HEADER -->
+                    {% block user_content %}
+                    <div class="app-header">
+                        <ul class="app-header-buttons">
+                            <li class="visible-mobile"><a href="#" class="btn btn-link btn-icon" data-sidebar-toggle=".app-sidebar.dir-left"><span class="icon-menu"></span></a></li>
+                            <li class="hidden-mobile"><a href="#" class="btn btn-link btn-icon" data-sidebar-minimize=".app-sidebar.dir-left"><span class="icon-list4"></span></a></li>
+                        </ul>
+                        <!-- <form class="app-header-search" action="" method="post">        
+                            <input type="text" name="keyword" placeholder="Search">
+                        </form>  -->   
+                    
+                        <ul class="app-header-buttons pull-right">
+                            <li>
+                                {% if user.is_authenticated %}
+                                <div class="contact contact-rounded contact-bordered contact-lg contact-ps-controls">
+                                    {% if user.profile_pic %}
+                                        <img src="{{ user.profile_pic.url }}" alt="{{ user.username }}" width="300px" height="40px">
+                                    {% else %}
+                                        <img src="{% static 'img/user/no-image.png' %}" alt="{{ user.username }}">
+                                    {% endif %}
+                                    <div class="contact-container">
+                                        <a href="{% url 'dashboard:user_profile' %}">{{ user.username }}</a>
+                                        <span>{{ user.email }}</span>
+                                    </div>
+                                    <div class="contact-controls">
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-default btn-icon" data-toggle="dropdown"><span class="icon-cog"></span></button>                        
+                                            <ul class="dropdown-menu dropdown-left">
+                                                <li><a href="{% url 'dashboard:change_password' %}"><span class="icon-cog"></span> Manage Password</a></li> 
+                                                <li class="divider"></li>
+                                                <li><a href="{% url 'dashboard:logout' %}"><span class="icon-exit-right"></span> Log Out</a></li> 
+                                            </ul>
+                                        </div>                    
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </li>        
+                        </ul>
+                    </div>
+                    {% endblock user_content %}
+                    <!-- END APP HEADER  -->
+                    
+                    <!-- START PAGE HEADING -->
+                    <div class="app-heading app-heading-bordered app-heading-page">
+                        <div class="icon icon-lg">
+                            <span class="icon-laptop-phone"></span>
+                        </div>
+                        <div class="title">
+                            <h1>Mboa Pa - Fianancial Service</h1>
+                            <p>Microfinance system administration</p>
+                        </div>               
+                        <!--<div class="heading-elements">
+                            <a href="#" class="btn btn-danger" id="page-like"><span class="app-spinner loading"></span> loading...</a>
+                        </div>-->
+                    </div>
+                    <div class="app-heading-container app-heading-bordered bottom">
+                        <ul class="breadcrumb">
+                            <li><a href="/">Home</a></li>                                                     
+                            <li class="active">Dashboard</li>
+                        </ul>
+                    </div>
+                    <!-- END PAGE HEADING -->
+                    
+                    {% block content %}
+                    {% if messages %}
+						<div class="messages">
+							<ul>
+							{% for message in messages %}
+								<li class="{{ message.tag }}alert alert-success alert-dismissable">
+									{{ message }}
+								</li>
+							{% endfor %}
+							</ul>
+						</div>
+					{% endif %}
+
+                    {% endblock %}
+                    
+                </div>
+                <!-- END APP CONTENT -->
+                                
+            </div>
+            <!-- END APP CONTAINER -->
+    {% block footer %}
+    	<!-- START APP FOOTER -->
+        <div class="app-footer app-footer-default" id="footer">
+        
+            <div class="alert alert-primary alert-dismissible alert-inside text-center">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="icon-cross"></span></button>
+                We use cookies to offer you the best experience on our website. Continuing browsing, you accept our cookies policy.
+            </div>
+            <div class="app-footer-line darken">                
+                <div class="copyright wide text-center">&copy; {% now 'Y' %} Mboa Pa Fianancial Services. All right reserved.</div>                
+            </div>
+        </div>
+        <!-- END APP FOOTER -->
+    {% endblock %}
+
+  {% include 'scripts_base.html' %}
+  {% block script_js %}{% endblock %}
